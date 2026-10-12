@@ -1,0 +1,86 @@
+schema_version: 1
+project:
+  name: 구구 야구단 타임런
+  goal: 구구단 정답 시간으로 진행하는 오프라인 야구 게임의 설치 파일과 검증 자료를 보존한다.
+  phase: 설치 파일 1.1.0 제공 / 실기기 미검증
+  summary: 이 저장소는 소스 개발 공간이 아닌 설치 파일·릴리스 전달 공간이다. 1.1.0 APK가 게시되어 있으며 실제 휴대폰 검증과 원본 소스 기준 연결이 다음 작업이다.
+tasks:
+  - id: source-inventory
+    title: 소스·브랜치·전달 기준 확인
+    order: 10
+    priority: high
+    status: done
+    weight: 1
+    agent: null
+    branch: main
+    depends_on: []
+    checklist:
+      - id: source-reference
+        title: 기본·개발 브랜치와 현재 파일 기준 확인
+        done: true
+      - id: release-reference
+        title: GitHub release 존재 여부와 전달 공간 역할 확인
+        done: true
+    blockers: []
+    handoff:
+      updated_at: 2026-10-12T10:31:53.217Z
+      completed:
+        - 기본·개발 브랜치와 현재 파일 기준 확인
+        - GitHub release 존재 여부와 전달 공간 역할 확인
+      verification:
+        - 2026-10-12 GitHub 브랜치·PR·릴리스 메타데이터 대조
+      stopped_reason: null
+      next_action: null
+      estimated_minutes: null
+    decisions: []
+  - id: published-test-artifact
+    title: 기존 테스트 APK 제공
+    order: 20
+    priority: high
+    status: done
+    weight: 1
+    agent: null
+    branch: null
+    depends_on: []
+    checklist:
+      - id: published-asset
+        title: 최신 게시 APK 자산과 버전 확인
+        done: true
+    blockers: []
+    handoff:
+      updated_at: 2026-10-12T10:31:53.217Z
+      completed:
+        - 최신 게시 APK 자산과 버전 확인
+      verification:
+        - 기존 release v1.1.0; 이번 설치·실행 검사는 수행하지 않음
+      stopped_reason: null
+      next_action: null
+      estimated_minutes: null
+    decisions: []
+  - id: resume-validation
+    title: 다음 실제 사용·재개 검증
+    order: 30
+    priority: high
+    status: queued
+    weight: 1
+    agent: main-agent
+    branch: null
+    depends_on: []
+    checklist:
+      - id: baseline-check
+        title: 기준 버전/격리 환경과 검사 조건 확정
+        done: false
+      - id: runtime-check
+        title: 명시한 미검증 흐름 실행과 결과 기록
+        done: false
+    blockers: []
+    handoff:
+      updated_at: 2026-10-12T10:31:53.217Z
+      completed: []
+      verification:
+        - release의 게시 자산·버전·SHA256을 확인했다. 게임 실행을 이번에 재검증하지 않았다.
+        - GitHub release APK 자산 12976136bytes 및 업로드 digest 존재 확인. APK를 새로 설치하거나 검증하지 않았다.
+      stopped_reason: null
+      next_action: 1.1.0의 원본 소스 위치를 연결하고 실기기 회차 선택→경기 완료·업데이트 기록 보존을 확인한다.
+      estimated_minutes: null
+    decisions: []
